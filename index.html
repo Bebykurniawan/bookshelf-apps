@@ -8,15 +8,22 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Bookshelf Apps</title>
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Style Css -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="modalPopUp" id="modalPopUp">
+      <strong>Succes!</strong> Menambahkan buku.
+    </div>
     <header class="head_bar">
       <h1 class="head_bar__title">Bookshelf Apps</h1>
     </header>
@@ -47,11 +54,10 @@
       </section>
 
       <section class="search_section">
-        <h2>Cari Buku (Opsional)</h2>
+        <h2>Cari Buku</h2>
         <form id="searchBook">
-          <label for="searchBookTitle">Judul</label>
-          <input id="searchBookTitle" type="text" />
-          <button id="searchSubmit" type="submit">Cari</button>
+          <input id="searchBookTitle" type="text" placeholder="Cari bukumu..."/>
+          <button id="searchSubmit" type="submit"><i class="fa fa-search"></i></button>
         </form>
       </section>
 
@@ -59,25 +65,14 @@
         <h2>Belum selesai dibaca</h2>
 
         <div id="incompleteBookshelfList" class="book_list">
-                <article class="book_item">
-                <!-- <div class="action">
-                  <button class="green">Selesai dibaca</button>
-                  <button class="red">Hapus buku</button>
-                </div> -->
-              </article> 
+                
             </div>
           </section>
-          
+          <hr>
           <section class="book_shelf">
             <h2>Selesai dibaca</h2>
             
             <div id="completeBookshelfList" class="book_list">
-              <article class="book_item">
-                <!-- <div class="action">
-                  <button class="green">Selesai dibaca</button>
-                  <button class="red">Hapus buku</button>
-                </div> -->
-              </article> 
         </div>
       </section>
     </main>

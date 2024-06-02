@@ -1,171 +1,225 @@
+:root {
+  --primary: #161818;
+  --secondary: #f6f7eb;
+  --tertiary: #e94f37;
+}
+
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-body, input, button {
-    font-family: 'Poppins', sans-serif;
+body {
+  background-color: #101010;
 }
 
-input, button {
-    font-size: 16px;
+input,
+button {
+  font-size: 16px;
 }
 
 .head_bar {
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: cornflowerblue;
-    color: white;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #161818;
+}
+.head_bar__title {
+  position: relative;
+}
+
+.head_bar__title::before {
+  background-image: linear-gradient(
+    to right,
+    rgb(246, 247, 235),
+    rgb(181, 172, 172),
+    #757575,
+    transparent
+  );
+  content: "";
+  position: absolute;
+  width: calc(100% + 20px);
+  height: 70%;
+  left: -3px;
+  bottom: 8px;
+  z-index: -1;
+  transform: rotate(-2deg);
 }
 
 main {
-    max-width: 800px;
-    width: 80%;
-    margin: 0 auto;
-    padding: 16px;
-
+  max-width: 800px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 16px;
 }
 
 .input_section {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    border: 1px solid black;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  background-color: rgb(246, 247, 235);
+  border-radius: 10px;
 }
 
 .input_section > h2 {
-    text-align: center;
-    color: cornflowerblue;
+  text-align: center;
+  color: #161818;
 }
 
 .input_section > form > .input {
-    margin: 8px 0;
+  margin: 8px 0;
 }
 
 .input_section > form > button {
-    background-color: cornflowerblue;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    display: block;
-    width: 100%;
-    padding: 8px;
-    cursor: pointer;
+  background-color: #e94f37;
+  color: #f6f7eb;
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+}
+.input_section > form > button:hover {
+  transition: 0.3s;
+  background-color: #fe3f22;
 }
 
 .input_section > form > button > span {
-    font-weight: bold;
+  font-weight: 700;
 }
 
 .input_section > form > .input > input {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
 }
 
-
 .input_section > form > .input > label {
-    color: cornflowerblue;
-    font-weight: bold;
+  color: #161818;
+  opacity: 0.8;
+  font-weight: bold;
 }
 
 .input_section > form > .input_inline {
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
 }
 
 .input_section > form > .input_inline > label {
-    color: cornflowerblue;
-    font-weight: bold;
-    margin-right: 10px;
+  color: #161818;
+  font-weight: bold;
+  margin-right: 10px;
+  opacity: 0.8;
 }
 
 .search_section {
-    margin: 16px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    border: 1px solid black;
-    border-radius: 10px;
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
 }
 
 .search_section > h2 {
-    color: cornflowerblue;
+  color: #f6f7eb;
 }
 
 .search_section > form {
-    padding: 16px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto 1fr 0.5fr;
-    grid-gap: 10px;
-}
-
-.search_section > form > label {
-    display: flex;
-    align-items: center;
+  padding: 16px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr auto;
 }
 
 .search_section > form > input {
-    padding: 5px;
-    border-radius: 5px;
+  padding: 5px;
+  padding: 0.4rem 0.8rem;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .search_section > form > button {
-    background-color: cornflowerblue;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #e94f37;
+  color: #f6f7eb;
+  border: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding: 0.6rem;
+  cursor: pointer;
 }
 
+.search_section > form > button:hover {
+  transition: 0.3s;
+  background-color: #fe3f22;
+}
 .book_shelf {
-    margin: 16px 0 0 0;
-    border: 1px solid black;
-    padding: 16px;
-    border-radius: 10px;
+  margin: 16px 0 0 0;
+  padding: 16px;
 }
 
 .book_shelf > h2 {
-    color: cornflowerblue;
+  color: #f6f7eb;
 }
 
 .book_shelf > .book_list {
-    padding: 16px;
+  padding: 16px;
 }
 
 .book_shelf > .book_list > .book_item {
-    padding: 8px 16px 16px 16px;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 10px 0;
+  padding: 8px 16px 16px 16px;
+  background-color: #f6f7eb;
+  color: #161818;
+  border-radius: 0.4rem;
+  margin: 10px 0;
 }
 
-.book_shelf > .book_list > .book_item > h3, p {
-    margin: 8px 0;
+.book_shelf > .book_list > .book_item > h3,
+p {
+  margin: 8px 0;
 }
 
 .book_shelf > .book_list > .book_item > .action > button {
-    border: 0;
-    padding: 5px;
-    margin: 0 5px 0 0;
-    border-radius: 5px;
-    cursor: pointer;
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  margin: 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .book_shelf > .book_list > .book_item > .action > .green {
-    background-color: darkgreen;
-    color: white;
+  background-color: darkgreen;
+  color: white;
 }
 
 .book_shelf > .book_list > .book_item > .action > .red {
-    background-color: darkred;
-    color: white;
+  background-color: darkred;
+  color: white;
+}
+
+hr {
+  border: 1px solid rgb(238, 238, 238, 0.1);
+}
+
+.modalPopUp {
+  margin: 1rem;
+  padding: 20px;
+  width: 300px;
+  border-radius: 0.5rem;
+  background-color: darkgreen;
+  color: #f6f7eb;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; 
+}
+
+.modalPopUp.show {
+  opacity: 1;
 }
