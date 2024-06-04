@@ -16,17 +16,39 @@
       rel="stylesheet"
     />
     <!-- Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- Style Css -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
+    <!-- Modal Succes -->
     <div class="modalPopUp" id="modalPopUp">
       <strong>Succes!</strong> Menambahkan buku.
     </div>
+    <!-- Modal Succes End-->
+
+    <!-- Modal Delete -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <h2>Konfirmasi Hapus</h2>
+        <p>Apakah Anda yakin ingin menghapus buku ini?</p>
+        <button id="confirmDelete" class="btn-confirm">Ya</button>
+        <button id="cancelDelete" class="btn-cancel">Tidak</button>
+      </div>
+    </div>
+    <!-- Modal Delete End -->
+    
+    <!-- Header -->
     <header class="head_bar">
       <h1 class="head_bar__title">Bookshelf Apps</h1>
     </header>
+    <!-- Header End -->
+
+    <!-- Form Input Book -->
     <main>
       <section class="input_section">
         <h2>Masukkan Buku Baru</h2>
@@ -41,7 +63,7 @@
           </div>
           <div class="input">
             <label for="inputBookYear">Tahun</label>
-            <input id="inputBookYear" type="number" required min="1"/>
+            <input id="inputBookYear" type="number" required min="1" />
           </div>
           <div class="input_inline">
             <label for="inputBookIsComplete">Selesai dibaca</label>
@@ -52,31 +74,44 @@
           </button>
         </form>
       </section>
+      <!-- Form Input Book End -->
 
+      <!-- Search Input  -->
       <section class="search_section">
         <h2>Cari Buku</h2>
         <form id="searchBook">
-          <input id="searchBookTitle" type="text" placeholder="Cari bukumu..."/>
-          <button id="searchSubmit" type="submit"><i class="fa fa-search"></i></button>
+          <input
+          id="searchBookTitle"
+          type="text"
+          placeholder="Cari bukumu..."
+          />
+          <button id="searchSubmit" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
         </form>
       </section>
-
+      <!-- Search Input End -->
+      
+      <!-- List inComplete Book -->
       <section class="book_shelf">
         <h2>Belum selesai dibaca</h2>
+        
+        <div id="incompleteBookshelfList" class="book_list"></div>
+      </section>
+      <!-- List inComplete Book End -->
 
-        <div id="incompleteBookshelfList" class="book_list">
-                
-            </div>
-          </section>
-          <hr>
-          <section class="book_shelf">
-            <h2>Selesai dibaca</h2>
-            
-            <div id="completeBookshelfList" class="book_list">
-        </div>
+      <hr />
+
+      <!-- List Complete Book -->
+      <section class="book_shelf">
+        <h2>Selesai dibaca</h2>
+        
+        <div id="completeBookshelfList" class="book_list"></div>
       </section>
     </main>
-
-    <script src="main.js"></script>
+    <!-- List Complete Book End-->
+    
+    <script src="script.js"></script>
   </body>
-</html>
+  </html>
+  

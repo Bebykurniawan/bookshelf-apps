@@ -185,6 +185,7 @@ p {
 }
 
 .book_shelf > .book_list > .book_item > .action > button {
+  font-size: 1rem;
   border: 0;
   padding: 0.4rem 0.8rem;
   margin: 0.4rem;
@@ -194,12 +195,12 @@ p {
 
 .book_shelf > .book_list > .book_item > .action > .green {
   background-color: darkgreen;
-  color: white;
+  color: #f6f7eb;
 }
 
 .book_shelf > .book_list > .book_item > .action > .red {
   background-color: darkred;
-  color: white;
+  color: #f6f7eb;
 }
 
 hr {
@@ -207,6 +208,7 @@ hr {
 }
 
 .modalPopUp {
+  z-index: 99;
   margin: 1rem;
   padding: 20px;
   width: 300px;
@@ -217,9 +219,61 @@ hr {
   top: 1rem;
   right: 1rem;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out; 
+  transition: opacity 0.5s ease-in-out;
 }
 
 .modalPopUp.show {
   opacity: 1;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #f6f7eb;
+  margin: 15% auto; 
+  padding: 1.2rem;
+  width: 80%; 
+  text-align: center;
+}
+
+.btn-confirm {
+  background-color: darkgreen; 
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn-cancel {
+  background-color: darkred; 
+  color: #f6f7eb;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .book_shelf > .book_list > .book_item > .action > .green{
+    /* min-width: fit-content; */
+    font-size: 0.8rem;
+  }
+
+  .book_shelf > .book_list > .book_item > .action > .red {
+    font-size: 0.8rem;
+  }
 }
