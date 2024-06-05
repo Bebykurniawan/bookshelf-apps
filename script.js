@@ -6,52 +6,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputBookIsComplete = document.getElementById("inputBookIsComplete");
   const modalPopUp = document.getElementById("modalPopUp");
   
-  // todo: Modal elements --->
   const deleteModal = document.getElementById("deleteModal");
   const confirmDeleteBtn = document.getElementById("confirmDelete");
   const cancelDeleteBtn = document.getElementById("cancelDelete");
 
   let currentBookElement = null;
 
-  // todo: Change inner text when user clicks the checkbox button --->
   inputBookIsComplete.addEventListener("change", () => {
     bookSubmitSpan.innerText = inputBookIsComplete.checked ? "Yang sudah selesai dibaca" : "Belum selesai dibaca"
   });
 
-  // todo: Submit Book Form --->
   inputBook.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = document.getElementById("inputBookTitle").value;
     const author = document.getElementById("inputBookAuthor").value;
-    const year = document.getElementById("inputBookYear").value;
+    const year = parseInt(document.getElementById("inputBookYear").value);  // Convert year to integer
     const isComplete = document.getElementById("inputBookIsComplete").checked;
 
-    // todo: Create book object --->
     const book = {
       id: +new Date(),
       title: title,
       author: author,
-      year: parseInt(year),
+      year: year,
       isComplete: isComplete,
     };
 
-    // todo: Add book to appropriate list --->
     isComplete ? addCompleteBooks(book) : addInCompleteBooks(book);
 
-    // todo: Clear input fields after submission --->
     inputBook.reset();
 
-    // todo: Show modal popup for feedback --->
     modalPopUp.classList.add("show");
     setTimeout(() => {
       modalPopUp.classList.remove("show");
     }, 3000);
 
-    // todo: Save books to local storage --->
     saveBooks();
   });
 
-  // todo: Add Incomplete Book and  Complete Book --->
   const addInCompleteBooks = (book) => {
     const bookItem = createBookItem(book);
     inCompleteBookList.appendChild(bookItem);
@@ -62,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     completeBookList.appendChild(bookItem);
   };
 
-  // todo: Create Book Item --->
   const createBookItem = ({ id, title, author, year, isComplete }) => {
     const bookItem = document.createElement("article");
     bookItem.classList.add("book_item");
@@ -77,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // todo: Add event listeners to buttons --->
     bookItem.querySelector(".green").addEventListener("click", () => {
       toggleBookCompletion(id);
     });
@@ -89,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return bookItem;
   };
 
-  // Toggle book completion status
   const toggleBookCompletion = (id) => {
     const bookElement = document.querySelector(`.book_item[data-id='${id}']`);
     const isComplete = bookElement.querySelector(".green").innerText === "Selesai dibaca";
@@ -120,27 +108,30 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("completeBooks", JSON.stringify(completeBooks));
   }
 
-  // Load books from local storage
   const loadBooks = () => {
     const inCompleteBooks =
       JSON.parse(localStorage.getItem("inCompleteBooks")) || [];
     const completeBooks =
       JSON.parse(localStorage.getItem("completeBooks")) || [];
 
-    inCompleteBooks.forEach((book) => addInCompleteBooks(book));
-    completeBooks.forEach((book) => addCompleteBooks(book));
+    inCompleteBooks.forEach((book) => {
+      book.year = parseInt(book.year); 
+      addInCompleteBooks(book)
+    });
+    completeBooks.forEach((book) => {
+      book.year = parseInt(book.year); 
+      addCompleteBooks(book)
+    });
   }
 
-  // Extract book data from HTML element
   const extractBookData = (bookElement, isComplete) => {
     const title = bookElement.querySelector("h3").innerText;
     const author = bookElement.querySelector("p:nth-child(2)").innerText.split(": ")[1];
-    const year = bookElement.querySelector("p:nth-child(3)").innerText.split(": ")[1];
+    const year = parseInt(bookElement.querySelector("p:nth-child(3)").innerText.split(": ")[1]); // Convert year to integer
     const id = parseInt(bookElement.getAttribute("data-id"));
     return { id, title, author, year, isComplete };
   }
 
-  // Function to remove a book
   const removeBook = () => {
     if (currentBookElement) {
       const id = parseInt(currentBookElement.getAttribute("data-id"));
@@ -155,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
     bookElement.parentNode.removeChild(bookElement);
   }
 
-  // Show the modal and close modal
   const showModal = () => {
     deleteModal.style.display = "block";
   }
@@ -164,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
     deleteModal.style.display = "none";
   }
 
-  // Event listeners for modal buttons
   confirmDeleteBtn.addEventListener("click", removeBook);
   cancelDeleteBtn.addEventListener("click", closeModal);
 
