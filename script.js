@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof(Storage) === "undefined") {
+    alert("Browser Anda tidak mendukung local storage. Fitur penyimpanan data tidak akan berfungsi.");
+    return;
+  }
+
   const inputBook = document.getElementById("inputBook");
   const inCompleteBookList = document.querySelector("#incompleteBookshelfList");
   const completeBookList = document.querySelector("#completeBookshelfList");
@@ -13,14 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentBookElement = null;
 
   inputBookIsComplete.addEventListener("change", () => {
-    bookSubmitSpan.innerText = inputBookIsComplete.checked ? "Yang sudah selesai dibaca" : "Belum selesai dibaca"
+    bookSubmitSpan.innerText = inputBookIsComplete.checked ? "Yang sudah selesai dibaca" : "Belum selesai dibaca";
   });
 
   inputBook.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = document.getElementById("inputBookTitle").value;
     const author = document.getElementById("inputBookAuthor").value;
-    const year = parseInt(document.getElementById("inputBookYear").value);  // Convert year to integer
+    const year = parseInt(document.getElementById("inputBookYear").value);  
     const isComplete = document.getElementById("inputBookIsComplete").checked;
 
     const book = {
@@ -97,37 +102,27 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const saveBooks = () => {
-    const inCompleteBooks = Array.from(inCompleteBookList.children).map(
-      (book) => extractBookData(book, false)
-    );
-    const completeBooks = Array.from(completeBookList.children).map((book) =>
-      extractBookData(book, true)
-    );
+    const allBooks = [
+      ...Array.from(inCompleteBookList.children).map(book => extractBookData(book, false)),
+      ...Array.from(completeBookList.children).map(book => extractBookData(book, true))
+    ];
 
-    localStorage.setItem("inCompleteBooks", JSON.stringify(inCompleteBooks));
-    localStorage.setItem("completeBooks", JSON.stringify(completeBooks));
+    localStorage.setItem("BOOKS", JSON.stringify(allBooks));
   }
 
   const loadBooks = () => {
-    const inCompleteBooks =
-      JSON.parse(localStorage.getItem("inCompleteBooks")) || [];
-    const completeBooks =
-      JSON.parse(localStorage.getItem("completeBooks")) || [];
+    const books = JSON.parse(localStorage.getItem("BOOKS")) || [];  
 
-    inCompleteBooks.forEach((book) => {
+    books.forEach(book => {
       book.year = parseInt(book.year); 
-      addInCompleteBooks(book)
-    });
-    completeBooks.forEach((book) => {
-      book.year = parseInt(book.year); 
-      addCompleteBooks(book)
+      book.isComplete ? addCompleteBooks(book) : addInCompleteBooks(book);
     });
   }
 
   const extractBookData = (bookElement, isComplete) => {
     const title = bookElement.querySelector("h3").innerText;
     const author = bookElement.querySelector("p:nth-child(2)").innerText.split(": ")[1];
-    const year = parseInt(bookElement.querySelector("p:nth-child(3)").innerText.split(": ")[1]); // Convert year to integer
+    const year = parseInt(bookElement.querySelector("p:nth-child(3)").innerText.split(": ")[1]); 
     const id = parseInt(bookElement.getAttribute("data-id"));
     return { id, title, author, year, isComplete };
   }

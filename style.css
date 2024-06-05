@@ -1,9 +1,3 @@
-:root {
-  --primary: #161818;
-  --secondary: #f6f7eb;
-  --tertiary: #e94f37;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -12,7 +6,7 @@
 }
 
 body {
-  background-color: #101010;
+  background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(64, 64, 64) 90.2%);
 }
 
 input,
